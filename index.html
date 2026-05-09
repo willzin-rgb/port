@@ -3,40 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Meu Portfólio - Técnico em Informática</title>
-    
+    <title>Willany Mateus - Portfólio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Configurações de Cores e Fontes */
+        /* Variáveis de Cores Atualizadas */
         :root {
-            --cor-principal: #00FF41; /* Azul moderno */
-            --cor-escura: #0D0208;
-            --cor-fundo: #f4f7f6;
+            --cor-primaria: #00b4d8; /* Azul Claro Vibrante */
+            --cor-secundaria: #90e0ef; /* Azul mais suave */
+            --cor-escura: #03045e; /* Azul Marinho Profundo */
+            --cor-fundo: #f0f9ff;
             --cor-texto: #333;
             --branco: #ffffff;
+            --transicao: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* Animações Keyframes */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes flutuar {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--cor-fundo);
             color: var(--cor-texto);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Menu de Navegação */
         header {
-            background-color: var(--cor-escura);
+            background-color: rgba(3, 4, 94, 0.95);
+            backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
 
         nav {
@@ -49,9 +74,10 @@
         }
 
         .logo {
-            color: var(--branco);
+            color: var(--cor-secundaria);
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .nav-links {
@@ -62,27 +88,50 @@
         .nav-links li a {
             color: var(--branco);
             text-decoration: none;
-            margin-left: 20px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+            margin-left: 25px;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: var(--transicao);
+            position: relative;
         }
 
-        .nav-links li a:hover {
-            color: var(--cor-principal);
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--cor-primaria);
+            transition: var(--transicao);
         }
+
+        .nav-links li a:hover::after { width: 100%; }
+        .nav-links li a:hover { color: var(--cor-primaria); }
 
         /* Seções Gerais */
         section {
-            padding: 80px 20px;
+            padding: 100px 20px;
             max-width: 1100px;
             margin: 0 auto;
         }
 
         .titulo-secao {
             text-align: center;
-            margin-bottom: 40px;
-            font-size: 2rem;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
             color: var(--cor-escura);
+            position: relative;
+        }
+
+        .titulo-secao::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--cor-primaria);
+            margin: 10px auto;
+            border-radius: 2px;
         }
 
         /* Seção Inicial (Hero) */
@@ -93,91 +142,168 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('IMAGENS/matrix-falling-code-7680x4320-15697.jpg');
+            background: linear-gradient(135deg, rgba(3, 4, 94, 0.8), rgba(0, 180, 216, 0.7)), 
+                        url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
-            background-attachment: fixed;
+            background-position: center;
             color: var(--branco);
             max-width: 100%;
+            padding: 0 20px;
         }
 
-        #inicio h1 { font-size: 3rem; margin-bottom: 10px; }
-        #inicio p { font-size: 1.2rem; margin-bottom: 30px; max-width: 600px; }
+        #inicio h1 { 
+            font-size: clamp(2rem, 8vw, 4rem); 
+            margin-bottom: 15px; 
+            animation: fadeInDown 1s ease-out;
+        }
 
-        .botoes { display: flex; gap: 15px; }
+        #inicio p { 
+            font-size: 1.2rem; 
+            margin-bottom: 35px; 
+            max-width: 700px;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .botoes { 
+            display: flex; 
+            gap: 20px; 
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
         .btn {
-            padding: 12px 25px;
-            border-radius: 5px;
+            padding: 15px 35px;
+            border-radius: 50px; /* Mais arredondado */
             text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transicao);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 2px solid transparent;
         }
-        .btn-primario { background: var(--cor-principal); color: var(--branco); }
-        .btn-secundario { border: 2px solid var(--branco); color: var(--branco); }
-        .btn:hover { transform: scale(1.05); opacity: 0.9; }
+
+        .btn-primario { 
+            background: var(--cor-primaria); 
+            color: var(--branco); 
+        }
+
+        .btn-primario:hover { 
+            background: var(--branco); 
+            color: var(--cor-primaria); 
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
+        }
+
+        .btn-secundario { 
+            border: 2px solid var(--branco); 
+            color: var(--branco); 
+            background: transparent;
+        }
+
+        .btn-secundario:hover { 
+            background: var(--branco); 
+            color: var(--cor-escura); 
+            transform: translateY(-3px);
+        }
 
         /* Habilidades (Badges) */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         .skill-badge {
-            background: var(--cor-principal);
+            background: var(--branco);
+            color: var(--cor-escura);
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--cor-primaria);
+            transition: var(--transicao);
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-5px);
+            background: var(--cor-primaria);
             color: var(--branco);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
         }
 
         /* Projetos (Cards) */
         .grid-projetos {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         .card {
             background: var(--branco);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: 0.3s;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transicao);
+            border: 1px solid rgba(0, 180, 216, 0.1);
         }
 
-        .card:hover { transform: translateY(-5px); }
-        .card h3 { margin-bottom: 10px; color: var(--cor-principal); }
-        .card p { font-size: 0.9rem; margin-bottom: 15px; }
+        .card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 40px rgba(0, 180, 216, 0.15);
+        }
+
+        .card h3 { 
+            margin-bottom: 15px; 
+            color: var(--cor-escura);
+            font-size: 1.4rem;
+        }
+
+        .card p { font-size: 0.95rem; color: #666; margin-bottom: 20px; }
+
+        .tag {
+            background: #e0f2fe;
+            color: var(--cor-primaria);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 5px;
+        }
 
         /* Rodapé */
         footer {
             background: var(--cor-escura);
             color: var(--branco);
             text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
+            padding: 50px 20px;
         }
 
         /* Botão Topo */
         #btnTopo {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--cor-principal);
+            bottom: 30px;
+            right: 30px;
+            background: var(--cor-primaria);
             color: white;
             border: none;
-            padding: 10px 15px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             cursor: pointer;
             display: none;
             z-index: 1000;
+            transition: var(--transicao);
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.4);
+            font-size: 1.2rem;
         }
+
+        #btnTopo:hover { transform: scale(1.1); background: var(--cor-escura); }
 
         /* Responsividade */
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            #inicio h1 { font-size: 2rem; }
+            #inicio h1 { font-size: 2.5rem; }
+            .botoes { flex-direction: column; width: 100%; max-width: 300px; }
         }
     </style>
 </head>
@@ -185,10 +311,10 @@
 
     <header>
         <nav>
-            <div class="logo">Portfólio</div>
+            <div class="logo">WILLANY.DEV</div>
             <ul class="nav-links">
                 <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Sobre mim</a></li>
+                <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#habilidades">Habilidades</a></li>
                 <li><a href="#projetos">Projetos</a></li>
                 <li><a href="#contato">Contato</a></li>
@@ -198,82 +324,92 @@
 
     <main>
         <section id="inicio">
-            <h1> WILLANY MATEUS DE MATOS SILVA </h1>
-            <p>Estudante do Curso Técnico em Informática</p>
-            <p>Estou dando meus primeiros passos no mundo da tecnologia e aprendendo a criar soluções com programação, redes e desenvolvimento web.</p>
+            <h1>Willany Mateus</h1>
+            <p>Transformando código em soluções e aprendendo a cada dia no universo da tecnologia.</p>
             <div class="botoes">
-                <a href="#projetos" class="btn btn-primario">Conheça meus projetos</a>
-                <a href="#contato" class="btn btn-secundario">Fale comigo</a>
+                <a href="#projetos" class="btn btn-primario">Ver Projetos</a>
+                <a href="#contato" class="btn btn-secundario">Entrar em Contato</a>
             </div>
         </section>
 
         <section id="sobre">
             <h2 class="titulo-secao">Sobre Mim</h2>
-            <div style="background: white; padding: 30px; border-radius: 8px;">
-                <p><strong>Instituição:</strong> IFCE Campus Acaraú.</p>
-                <p><strong>Turma:</strong> TURMA 01 | <strong>Local:</strong> Acaraú - CE</p>
+            <div style="background: white; padding: 40px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.02);">
+                <p><strong><i class="icon">📍</i> Localização:</strong> Acaraú - CE | IFCE Campus Acaraú</p>
+                <p><strong><i class="icon">🎓</i> Formação:</strong> Técnico em Informática (2026)</p>
                 <br>
-                <p>Sou Willany Mateus, estudante do Técnico em Informática no IFCE Campus Acaraú com grande interesse em desenvolvimento web e programação. Estou explorando as tecnologias frontend com HTML, CSS e JavaScript, buscando criar soluções práticas e inovadoras. Meu objetivo é me tornar uma desenvolvedora full-stack competente, contribuindo para projetos tecnológicos significativos e continuando minha formação na área de tecnologia da informação.</p>
+                <p>Olá! Eu sou a Willany Mateus. Atualmente estou mergulhando no mundo do desenvolvimento web. Tenho um foco especial no <strong>Frontend</strong>, onde posso unir lógica e criatividade para construir interfaces que proporcionem uma ótima experiência ao usuário. Estou sempre em busca de novos desafios e tecnologias para aprender.</p>
             </div>
         </section>
 
         <section id="habilidades">
-            <h2 class="titulo-secao">Habilidades que estou aprendendo</h2>
+            <h2 class="titulo-secao">Habilidades</h2>
             <div class="skills-container">
                 <span class="skill-badge">HTML5</span>
                 <span class="skill-badge">CSS3</span>
-                <span class="skill-badge">Lógica de Programação</span>
-                <span class="skill-badge">Portugol</span>
-                <span class="skill-badge">JavaScript Básico</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">Lógica</span>
                 <span class="skill-badge">Linux</span>
-                <span class="skill-badge">Manutenção de PCs</span>
                 <span class="skill-badge">Redes</span>
+                <span class="skill-badge">Manutenção</span>
+                <span class="skill-badge">Portugol</span>
             </div>
         </section>
 
         <section id="projetos">
-            <h2 class="titulo-secao">Projetos e Atividades</h2>
+            <h2 class="titulo-secao">Meus Projetos</h2>
             <div class="grid-projetos">
                 <article class="card">
                     <h3>Meu Primeiro Site</h3>
-                    <p>Página simples criada para praticar estrutura HTML e estilos CSS básicos.</p>
-                    <small>Tecnologias: HTML, CSS</small><br><br>
-                    <a href="#" class="btn btn-primario" style="font-size: 0.8rem;">Ver detalhes</a>
+                    <p>Um projeto inicial focado em dominar as tags HTML e a estilização com CSS moderno.</p>
+                    <div>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                    <br>
+                    <a href="#" class="btn-primario btn" style="display:inline-block; padding: 8px 20px; font-size: 0.8rem;">Ver Projeto</a>
                 </article>
 
                 <article class="card">
-                    <h3>Algoritmos em Portugol</h3>
-                    <p>Exercícios desenvolvidos para praticar lógica, entrada e saída de dados.</p>
-                    <small>Tecnologias: Portugol, Logica</small><br><br>
-                    <a href="#" class="btn btn-primario" style="font-size: 0.8rem;">Ver detalhes</a>
+                    <h3>Sistemas de Lógica</h3>
+                    <p>Conjunto de algoritmos complexos desenvolvidos em Portugol para resolução de problemas.</p>
+                    <div>
+                        <span class="tag">Lógica</span>
+                        <span class="tag">Portugol</span>
+                    </div>
+                    <br>
+                    <a href="#" class="btn-primario btn" style="display:inline-block; padding: 8px 20px; font-size: 0.8rem;">Ver Projeto</a>
                 </article>
 
                 <article class="card">
-                    <h3>Configuração de Servidor</h3>
-                    <p>Atividade prática sobre instalação de servidor Apache em ambiente Linux.</p>
-                    <small>Tecnologias: Linux, Servidores</small><br><br>
-                    <a href="#" class="btn btn-primario" style="font-size: 0.8rem;">Ver detalhes</a>
+                    <h3>Infraestrutura Linux</h3>
+                    <p>Configuração completa de servidores e permissões em ambiente Linux Debian.</p>
+                    <div>
+                        <span class="tag">Linux</span>
+                        <span class="tag">Server</span>
+                    </div>
+                    <br>
+                    <a href="#" class="btn-primario btn" style="display:inline-block; padding: 8px 20px; font-size: 0.8rem;">Ver Projeto</a>
                 </article>
             </div>
         </section>
 
         <section id="contato">
-            <h2 class="titulo-secao">Contato</h2>
-            <div style="text-align: center;">
-                <p>E-mail: <strong>willany.mateus@escola.pr.gov.br</strong></p>
-                <p>Cidade: Acaraú - CE </p>
-                   <P>NUMERO: (85)997847381 </P>
-                <br>
-                <p><em>"Estou em processo de aprendizado e aberto a novos desafios na área de tecnologia."</em></p>
+            <h2 class="titulo-secao">Vamos Conversar?</h2>
+            <div style="text-align: center; background: var(--cor-escura); color: white; padding: 40px; border-radius: 20px;">
+                <p style="margin-bottom: 20px;">Sinta-se à vontade para me enviar uma mensagem!</p>
+                <p>📧 <strong>willany.mateus@escola.pr.gov.br</strong></p>
+                <p>📞 <strong>(85) 99784-7381</strong></p>
+                <div style="margin-top: 30px;">
+                    <a href="mailto:willany.mateus@escola.pr.gov.br" class="btn btn-primario">Enviar E-mail</a>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p><strong>WILLANY MATEUS DE MATOS SILVA </strong></p>
-        <p>Curso Técnico em Informática - 2026</p>
-        <P> </P>
-        <p><small>Site desenvolvido como atividade prática da disciplina.</small></p>
+        <p style="font-size: 1.2rem; font-weight: bold;">Willany Mateus Silva</p>
+        <p>Desenvolvido com ❤️ | 2024 - 2026</p>
     </footer>
 
     <button id="btnTopo" title="Voltar ao topo">↑</button>
@@ -281,9 +417,8 @@
     <script>
         // Botão Voltar ao Topo
         const btn = document.getElementById("btnTopo");
-
         window.onscroll = function() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
                 btn.style.display = "block";
             } else {
                 btn.style.display = "none";
@@ -293,16 +428,6 @@
         btn.onclick = function() {
             window.scrollTo({top: 0, behavior: 'smooth'});
         };
-
-        // Rolagem Suave para links do Menu
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
 </body>
 </html>
